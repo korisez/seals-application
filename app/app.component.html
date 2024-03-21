@@ -1,0 +1,10 @@
+<h2>Seal Application</h2>
+<p-dropdown [options]="templates" [(ngModel)]="selectedTemplateValue" placeholder="Select a template" (onChange)="onTemplateChange($event.value)"></p-dropdown>
+
+<div *ngIf="selectedTemplateValue">
+    <h3>Enter Seal Numbers for {{selectedTemplate?.label}}</h3>
+    <div *ngFor="let seal of sealPositions[selectedTemplateValue]; let i = index">
+        <p-dropdown [options]="sealLocationOptions" [(ngModel)]="seal.label" placeholder="Select Location" (onChange)="onSealChange(i)"></p-dropdown>
+        <input type="text" pInputText [(ngModel)]="seal.seal_no" (ngModelChange)="onSealChange(i)">
+    </div>
+</div>
